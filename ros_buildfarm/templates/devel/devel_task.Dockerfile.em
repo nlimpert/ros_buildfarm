@@ -75,8 +75,16 @@ RUN python3 -u /tmp/wrapper_scripts/apt.py update-install-clean -q -y ccache
     dependency_versions=dependency_versions,
 ))@
 
+@(TEMPLATE(
+    'snippet/install_haros.Dockerfile.em',
+    os_name=os_name,
+    os_code_name=os_code_name,
+    testing=testing,
+))@
+
 USER buildfarm
 ENTRYPOINT ["sh", "-c"]
+
 @{
 cmd = \
     'PATH=/usr/lib/ccache:$PATH' + \
